@@ -134,7 +134,7 @@ internal class DiscordBot : IHostedService
                     _botServices.VanityRoles.Clear();
                     foreach (var role in vanityRoles)
                     {
-                        _logger.LogInformation("Adding Role: {id} => {desc}", role.Key, role.Value);
+                        //_logger.LogInformation("Adding Role: {id} => {desc}", role.Key, role.Value);
 
                         var restrole = guild.GetRole(role.Key);
                         if (restrole != null)
@@ -426,7 +426,7 @@ internal class DiscordBot : IHostedService
             var endPoint = _connectionMultiplexer.GetEndPoints().First();
             var onlineUsers = await _connectionMultiplexer.GetServer(endPoint).KeysAsync(pattern: "UID:*").CountAsync().ConfigureAwait(false);
 
-            _logger.LogInformation("Users online: " + onlineUsers);
+            //_logger.LogInformation("Users online: " + onlineUsers);
             await _discordClient.SetActivityAsync(new Game("Mare for " + onlineUsers + " Users")).ConfigureAwait(false);
             await Task.Delay(TimeSpan.FromSeconds(10)).ConfigureAwait(false);
         }
