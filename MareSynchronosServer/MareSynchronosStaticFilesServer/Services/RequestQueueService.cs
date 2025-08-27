@@ -128,7 +128,7 @@ public class RequestQueueService : IHostedService
 
     private void ProcessQueue(object src, ElapsedEventArgs e)
     {
-        _logger.LogDebug("Periodic Processing Queue Start");
+        //_logger.LogDebug("Periodic Processing Queue Start");
         _metrics.SetGaugeTo(MetricsAPI.GaugeQueueFree, _userQueueRequests.Count(c => c == null));
         _metrics.SetGaugeTo(MetricsAPI.GaugeQueueActive, _userQueueRequests.Count(c => c != null && c.IsActive));
         _metrics.SetGaugeTo(MetricsAPI.GaugeQueueInactive, _userQueueRequests.Count(c => c != null && !c.IsActive));
@@ -222,7 +222,7 @@ public class RequestQueueService : IHostedService
         finally
         {
             _queueProcessingSemaphore.Release();
-            _logger.LogDebug("Periodic Processing Queue End");
+            //_logger.LogDebug("Periodic Processing Queue End");
         }
     }
 }
