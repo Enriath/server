@@ -3,8 +3,8 @@ services:
     image: postgres:latest
     command: ["postgres", "-c", "log_statement=all"]
     restart: always
-    ports:
-      - 5432:5432/tcp
+    #ports:
+    #  - 5432:5432/tcp
     environment:
       POSTGRES_DB: mare
       POSTGRES_USER: mare
@@ -39,9 +39,8 @@ services:
   mare-server:
     image: darkarchon/mare-synchronos-server:latest
     restart: on-failure
-    ports:
-      - 6000:6000/tcp
-      - 6050:6050/tcp
+    #ports:
+    #  - 6000:6000/tcp
     environment:
       MareSynchronos__CdnFullUrl: "${DEV_MARE_CDNURL}"
       MareSynchronos__XIVAPIKey: "${DEV_MARE_XIVAPIKEY}"
@@ -62,6 +61,8 @@ services:
   mare-auth:
     image: darkarchon/mare-synchronos-authservice:latest
     restart: on-failure
+    #ports:
+    #  - 8080:8080/tcp
     environment:
       DOTNET_USE_POLLING_FILE_WATCHER: 1
     volumes:
