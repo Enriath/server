@@ -93,12 +93,12 @@ public partial class MareWizardModule
         using var db = await GetDbContext().ConfigureAwait(false);
         bool canAddVanityId = !db.Users.Any(u => u.UID == modal.DesiredVanityUID || u.Alias == modal.DesiredVanityUID);
 
-        Regex rgx = new(@"^[_\-a-zA-Z0-9]{5,15}$", RegexOptions.ECMAScript);
+        Regex rgx = new(@"^[_\-a-zA-Z0-9]{1,15}$", RegexOptions.ECMAScript);
         if (!rgx.Match(desiredVanityUid).Success)
         {
             eb.WithColor(Color.Red);
             eb.WithTitle("Invalid Vanity UID");
-            eb.WithDescription("A Vanity UID must be between 5 and 15 characters long and only contain the letters A-Z, numbers 0-9, dashes (-) and underscores (_).");
+            eb.WithDescription("A Vanity UID must be between 1 and 15 characters long and only contain the letters A-Z, numbers 0-9, dashes (-) and underscores (_).");
             cb.WithButton("Cancel", "wizard-vanity", ButtonStyle.Secondary, emote: new Emoji("❌"));
             cb.WithButton("Pick Different UID", "wizard-vanity-uid-set:" + uid, ButtonStyle.Primary, new Emoji("💅"));
         }

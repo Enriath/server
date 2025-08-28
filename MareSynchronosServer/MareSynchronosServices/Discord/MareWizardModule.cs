@@ -194,7 +194,7 @@ public partial class MareWizardModule : InteractionModuleBase
         public string Title => "Set Vanity UID";
 
         [InputLabel("Set your Vanity UID")]
-        [ModalTextInput("vanity_uid", TextInputStyle.Short, "5-15 characters, underscore, dash", 5, 15)]
+        [ModalTextInput("vanity_uid", TextInputStyle.Short, "1-15 characters, underscore, dash", 1, 15)]
         public string DesiredVanityUID { get; set; }
     }
 
